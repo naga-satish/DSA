@@ -209,32 +209,33 @@ class SinglyLinkedList:
         return str_rep
 
 
-a = SinglyLinkedList()
+if __name__ == "__main__":
+    a = SinglyLinkedList()
 
-for i in range(12):
-    a.insert(i)
+    for i in range(12):
+        a.insert(i)
 
-# print(a, '\n')
-# a.insert_at_end(10)
-# print(a, '\n')
-# a.insert_at(12, 0)
-# print(a, '\n')
-# a.delete(10)
-# print(a, '\n')
-# print(a.length, '\n')
-# print(a, '\n')
-# a.delete_head()
-# print(a.length, ' | ', a, '\n')
-#
-# a.delete_tail()
-# print(a.length, ' | ', a, '\n')
-#
-# print(a.value_at(5), ' | ', a, '\n')
-# print(a.front(), ' | ', a, '\n')
-# print(a.back(), ' | ', a, '\n')
-#
-# print(a.delete_idx(9), ' | ', a, '\n')
-#
-# print(a)
-# a = a.reversed()
-# print(a)
+    print(a, '\n')
+    a.insert_at_end(10)
+    print(a, '\n')
+    a.insert_at(12, 0)
+    print(a, '\n')
+    a.delete(10)
+    print(a, '\n')
+    print(a.length, '\n')
+    print(a, '\n')
+    a.delete_head()
+    print(a.length, ' | ', a, '\n')
+
+    a.delete_tail()
+    print(a.length, ' | ', a, '\n')
+
+    print(a.value_at(5), ' | ', a, '\n')
+    print(a.front(), ' | ', a, '\n')
+    print(a.back(), ' | ', a, '\n')
+
+    print(a.delete_idx(9), ' | ', a, '\n')
+
+    print(a)
+    a = a.reversed()
+    print(a)

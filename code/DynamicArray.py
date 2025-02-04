@@ -109,20 +109,21 @@ class DynamicArray:
         ]) + "]"
 
 
-n = 5
-a = DynamicArray(n)
-for i in range(n):
-    a[i] = 'i'*(i+1)
+if __name__ == "__main__":
+    n = 5
+    a = DynamicArray(n)
+    for i in range(n):
+        a[i] = 'i'*(i+1)
 
-print(a)
-print(len(a))
-del a[3]
-print(a)
-a[3] = ''
-print(a)
-a.append(5)
-print(a)
-a.remove('')
-print(a)
-print(a.find('i'))
-print(a)
+    print(a)
+    print(len(a))
+    del a[3]
+    print(a)
+    a[3] = ''
+    print(a)
+    a.append(5)
+    print(a)
+    a.remove('')
+    print(a)
+    print(a.find('i'))
+    print(a)
