@@ -5,7 +5,7 @@ class Node:
         self.next = None
 
 
-class DoublyLinkedList:
+class CircularlyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
@@ -14,8 +14,10 @@ class DoublyLinkedList:
     def insert(self, value):
         new_node = Node(value)
         new_node.next = self.head
+        new_node.prev = self.tail
         if self.length != 0:
             self.head.prev = new_node
+            self.tail.next = new_node
         self.head = new_node
         if self.length == 0:
             self.tail = new_node
@@ -43,12 +45,14 @@ class DoublyLinkedList:
             new_node.next = temp
             prev.next = new_node
 
-        self.length += 1
+            self.length += 1
 
     def insert_at_tail(self, value):
         new_node = Node(value)
         new_node.prev = self.tail
+        new_node.next = self.head
         self.tail.next = new_node
+        self.head.prev = new_node
         self.tail = new_node
         self.length += 1
 
@@ -68,7 +72,7 @@ class DoublyLinkedList:
         if self.length > 0:
             self.head = self.head.next
             if self.length > 1:
-                self.head.prev = None
+                self.head.prev = self.tail
 
             self.length -= 1
         else:
@@ -78,7 +82,7 @@ class DoublyLinkedList:
         if self.length > 0:
             self.tail = self.tail.prev
             if self.length > 1:
-                self.tail.next = None
+                self.tail.next = self.head
 
             self.length -= 1
         else:
@@ -145,67 +149,37 @@ class DoublyLinkedList:
             else:
                 print(f"Can't delete from an empty DoublyLinkedList instance!.")
 
-    def reverse(self):
-        reversed_ll = DoublyLinkedList()
-        temp = self.head
-
-        while temp.next or temp.value:
-            reversed_ll.insert(temp.value)
-            if temp.next is None:
-                break
-            temp = temp.next
-        return reversed_ll
-
     def __len__(self):
         return self.length
 
     def __str__(self):
         if self.length == 0:
-            return 'Empty DoublyLinkedList instance.'
+            return 'Empty CircularlyLinkedList instance.'
         else:
-            str_rep = ''
+            str_rep = '<-> '
+            count = 0
             temp = self.head
-            while temp.next:
+            while count < self.length:
                 if not isinstance(temp.value, str):
                     str_rep = str_rep + str(temp.value) + " <-> "
                 else:
                     str_rep = str_rep + f"'{str(temp.value)}' <-> "
 
-                if not temp.next:
-                    break
                 temp = temp.next
-
-            if not isinstance(temp.value, str):
-                str_rep = str_rep + str(temp.value)
-            else:
-                str_rep = str_rep + f"'{str(temp.value)}'"
+                count += 1
 
             return str_rep
 
 
-if __name__ == "__main__":
-    a = DoublyLinkedList()
-    # print(a)
+if __name__ == '__main__':
+    a = CircularlyLinkedList()
 
-    for i in range(1, 11):
-        a.insert(i**i)
+    for i in range(20):
+        a.insert(i)
 
-    print(a)
-    print(f"head - {a.get_head()}, tail - {a.get_tail()}")
-    a.insert_at_tail(5)
-    print(a)
-    print(f"tail - {a.get_tail()}")
+    print(len(a), '|', a)
 
-    a.delete_head()
-    print(a)
+    for i in range(1, 21):
+        a.insert_at_idx(i//2, 'i'*i)
 
-    a.delete_tail()
-    print(a)
-
-    a.delete(by='value', value=10000)
-    print(a)
-
-    a.insert_at_idx(0, 5)
-    print(a)
-
-    print(a.reverse())
+    print(len(a), '|', a)
