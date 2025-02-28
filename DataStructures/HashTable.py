@@ -1,3 +1,16 @@
+def is_prime(ip: int):
+    import math
+    try:
+        assert ip > 1
+        for n in range(math.isqrt(ip), 1, -1):
+            if ip % n == 0:
+                return False
+        else:
+            return True
+    except AssertionError:
+        print("Input number should be greater than 1")
+
+
 class HashTable:
     def __init__(self, table_size=100):
 
